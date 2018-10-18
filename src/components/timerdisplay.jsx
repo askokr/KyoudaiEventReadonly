@@ -1,20 +1,12 @@
 import React, { Component } from "react";
-import Buttons from "./TimerDisplayElements/buttons";
 import TextBox from "./TimerDisplayElements/textBox";
 import "../App.css";
 
 class TimerDisplay extends Component {
   render() {
     const props = this.props;
-    const {
-      event,
-      favouriteEvent,
-      onDelete,
-      onEdit,
-      onFavourite,
-      time
-    } = props;
-    const { eventName, eventDate, eventId, imageUrl } = event;
+    const { event, time } = props;
+    const { eventName, eventDate, imageUrl } = event;
     const backgroundImage = {
       backgroundImage: `url(${imageUrl})`
     };
@@ -27,21 +19,12 @@ class TimerDisplay extends Component {
             (new Date(time) > new Date(eventDate) ? " passedEvent" : "")
           }
         >
-          <div className="d-flex flex-row">
-            <div className="p-2 w-100">
+          <div className="d-flex justify-content-center">
+            <div className="p-2 justify-content-center">
               <TextBox
                 eventName={eventName}
                 eventDate={eventDate}
                 timerFunctionInput={props}
-              />
-            </div>
-            <div className="p-2">
-              <Buttons
-                eventId={eventId}
-                favouriteEvent={favouriteEvent}
-                onDelete={onDelete}
-                onEdit={onEdit}
-                onFavourite={onFavourite}
               />
             </div>
           </div>

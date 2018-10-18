@@ -4,26 +4,13 @@ import Zoom from "@material-ui/core/Zoom";
 
 class SaveLoadButtonGruop extends Component {
   render() {
-    const { onWriteCookie, onReadCookie, isThereACookie } = this.props;
-    const message = ["Salvesta", "Lae", "Salvesta küpsisena", "Lae küpsisest"];
+    const { onLoad } = this.props;
+    const message = ["Värskenda", "Värskenda nimekirja"];
     return (
       <div className="btn-group btn-group-toggle m-2" data-toggle="buttons">
-        <Tooltip TransitionComponent={Zoom} title={message[2]}>
-          <button
-            className="btn btn-outline-success btn-lg"
-            onClick={onWriteCookie}
-          >
+        <Tooltip TransitionComponent={Zoom} title={message[1]}>
+          <button className={"btn btn-lg btn-outline-success"} onClick={onLoad}>
             {message[0]}
-          </button>
-        </Tooltip>
-        <Tooltip TransitionComponent={Zoom} title={message[3]}>
-          <button
-            className={
-              "btn btn-lg btn-" + (isThereACookie ? "" : "outline-") + "success"
-            }
-            onClick={onReadCookie}
-          >
-            {message[1]}
           </button>
         </Tooltip>
       </div>

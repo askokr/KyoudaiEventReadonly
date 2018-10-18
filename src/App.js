@@ -7,19 +7,16 @@ import "bootstrap/dist/css/bootstrap.css";
 
 class App extends Component {
   state = {
-    areYouAddingAnEvent: false,
     favouriteEvent: null,
-    oldImageUrl: undefined,
     sortDirection: "byKey",
     time: new Date(),
-    whatEventAreYouEditing: null,
     whatEvetsToDisplay: "all",
     events: [
       {
+        eventId: 0,
         eventName: "",
         eventDate: "",
-        imageUrl: "",
-        eventId: 0
+        imageUrl: ""
       }
     ]
   };
@@ -27,6 +24,7 @@ class App extends Component {
   //the place to create a state, make ajax calls etc
   componentDidMount() {
     setInterval(this.update, 1000);
+    this.handleSheetRead();
   }
 
   update = () => {
@@ -34,9 +32,6 @@ class App extends Component {
       time: new Date()
     });
     this.rememberSortorder();
-    // document.cookie !== ""
-    //   ? console.log(document.cooki)
-    //   : console.log("no cookie");
   };
   //Sort images to be displayed
   displayedEvents = () => {
@@ -85,164 +80,38 @@ class App extends Component {
     }
   };
 
-  handleDelete = eventId => {
-    const favouriteEvent = null;
-    const events = this.state.events.filter(c => c.eventId !== eventId);
-    if (eventId === this.state.favouriteEvent) {
-      this.setState({ favouriteEvent });
-    }
-    this.setState({ events });
-  };
-
   handleDisplay = type => {
     const whatEvetsToDisplay = type;
     this.setState({ whatEvetsToDisplay });
   };
 
-  handleEdit = eventId => {
-    let areYouAddingAnEvent = this.state.areYouAddingAnEvent;
-    if (areYouAddingAnEvent) {
-      areYouAddingAnEvent = false;
-      this.setState({ areYouAddingAnEvent });
-    }
-    const event = this.state.events.find(c => c.eventId === eventId);
-    const whatEventAreYouEditing = eventId;
-    this.setState({ whatEventAreYouEditing });
-    const oldImageUrl = event.imageUrl;
-    this.setState({ oldImageUrl });
-
-    const events = [...this.state.events];
-    events[0].eventName = event.eventName;
-    events[0].eventDate = event.eventDate;
-    events[0].imageUrl = event.imageUrl;
-  };
-
-  handleEventDate = e => {
-    const value = e.valueOf();
-    const events = [...this.state.events];
-    events[0].eventDate = value;
-    this.setState({ events });
-  };
-
-  handleEventName = e => {
-    const value = e.target.value;
-    const events = [...this.state.events];
-    events[0].eventName = value;
-    this.setState({ events });
-  };
-
-  handleOnFavourite = eventId => {
-    let favouriteEvent;
-    if (eventId !== this.state.favouriteEvent) {
-      favouriteEvent = eventId;
-    } else {
-      favouriteEvent = null;
-    }
-    this.setState({ favouriteEvent });
-  };
-
-  handleFormSubmit = e => {
-    e.preventDefault();
-    const newEventName = this.state.events[0].eventName;
-    const newEventDate = this.state.events[0].eventDate;
-    const newImageUrl = this.state.events[0].imageUrl;
-    let events = [...this.state.events];
-
-    if (this.state.areYouAddingAnEvent === true) {
-      const newEventId = this.state.time.getTime();
-      const newEvent = {
-        eventName: newEventName,
-        eventDate: newEventDate,
-        imageUrl: newImageUrl,
-        eventId: newEventId
-      };
-      events.push(newEvent);
-
-      const areYouAddingAnEvent = false;
-      this.setState({ areYouAddingAnEvent });
-    } else {
-      let whatEventAreYouEditing = this.state.whatEventAreYouEditing;
-      var indexOfEvent = events.findIndex(
-        i => i.eventId === whatEventAreYouEditing
-      );
-      events[indexOfEvent].eventName = newEventName;
-      events[indexOfEvent].eventDate = newEventDate;
-      events[indexOfEvent].imageUrl = newImageUrl;
-
-      whatEventAreYouEditing = null;
-      this.setState({ whatEventAreYouEditing });
-      const oldImageUrl = undefined;
-      this.setState({ oldImageUrl });
-    }
-    events[0] = {
-      eventName: "",
-      eventDate: "",
-      imageUrl: "",
-      eventId: 0
-    };
-    this.setState({ events });
-  };
-
-  handleImageUrl = e => {
-    const value = e.target.value;
-    const events = [...this.state.events];
-    events[0].imageUrl = value;
-    this.setState({ events });
-  };
-
-  handleRandomImage = async e => {
-    e.preventDefault();
-    const ACCESS_KEY =
-      "b97cc352335ea33a72e964d4c985c386b54ac45abbb031bbb23ba1c2bca3b116";
-    const URI = "https://api.unsplash.com/photos/random/?client_id=";
-    const api_call = await fetch(`${URI}${ACCESS_KEY}`);
-    const response = await api_call.json();
-    const imageUrl = response.urls.regular;
-    const userProfile = response.user.links.html;
-    console.log(userProfile);
-    let events = [...this.state.events];
-    events[0].imageUrl = imageUrl;
-    this.setState(events);
-  };
-
   handleSheetRead = async () => {
-    const API_ROUTE = "https://sheets.googleapis.com/v4/spreadsheets/";
-    const FILE_ID = "1syL5nLI6lmz4qoMtshYTdZjx_Q5l75elG9iPtcKKgvk";
-    const COMMAND = "/values/B2%3AC2?";
-    const API_KEY = "AIzaSyCUmw_0VD7EYk2JBh8oeOmN3fRtR2nb1lU";
-
     const api_call = await fetch(
-      `${API_ROUTE}${FILE_ID}${COMMAND}key=${API_KEY}`
+      "https://sheetsu.com/apis/v1.0qu/6d94d7456f46"
     );
-    const apiCallContents = await api_call.json();
-    const values = apiCallContents.values[0];
-    const eventsString = values[1];
-    let events = JSON.parse(eventsString);
-    const dafaultEvent = this.state.events[0];
-    events.unshift(dafaultEvent);
-    this.setState({ events });
-  };
+    const api_response = await api_call.json();
 
-  handleWriteCookie = async () => {
-    // const API_KEY = "AIzaSyCUmw_0VD7EYk2JBh8oeOmN3fRtR2nb1lU";
-    // const API_ROUTE_FOR_CALL =
-    //   "https://sheets.googleapis.com/v4/spreadsheets/1syL5nLI6lmz4qoMtshYTdZjx_Q5l75elG9iPtcKKgvk:batchUpdate?key=";
-    // const COMMAND =
-    //   '{"requests":[{"insertDimension": {"range":{"sheetId":0,"dimension":"ROWS","startIndex": 1,"endIndex": 2},"inheritFromBefore":false}}]}';
-    // const ACCESS_TOKEN =
-    //   "ya29.Glw2Bi_GNZMsT_hJK0COxpZg3koRwi5ENaCQt-50Hf_HYnpuu3N7AS8b4Ja_f5RwJyIcMo0vHaVhKdYch6y32rlIwd45BJEihUiTmGazlgXF7xSOXCShzaQdM9KUtw";
-    // const fetch(`${API_ROUTE_FOR_CALL}${API_KEY}${COMMAND}`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Access-Control-Allow-Origin":
-    //       "https://fervent-lumiere-e97c88.netlify.com/",
-    //     Authorization: `Bearer ${ACCESS_TOKEN}`,
-    //     "Access Token":
-    //       "ya29.Glw2Bi_GNZMsT_hJK0COxpZg3koRwi5ENaCQt-50Hf_HYnpuu3N7AS8b4Ja_f5RwJyIcMo0vHaVhKdYch6y32rlIwd45BJEihUiTmGazlgXF7xSOXCShzaQdM9KUtw",
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json"
-    //   }
-    // });
+    let events = [...this.state.events];
+
+    const experiment = api_response;
+    const nrOfEvents = experiment.length;
+
+    for (let i = 0; i < nrOfEvents; i++) {
+      let eventId = api_response[i].eventId;
+      console.log(eventId);
+      let eventName = api_response[i].eventName;
+      console.log(eventName);
+      let eventDate = api_response[i].eventDate;
+      let imageUrl = api_response[i].imageUrl;
+      let event = {
+        eventId: eventId,
+        eventName: eventName,
+        eventDate: eventDate,
+        imageUrl: imageUrl
+      };
+      events.push(event);
+    }
+    this.setState({ events });
   };
 
   handleSort = type => {
@@ -283,30 +152,6 @@ class App extends Component {
     this.setState({ sortDirection });
   };
 
-  handleToggle = what => {
-    if (what === "editor") {
-      let events = [...this.state.events];
-      events[0] = {
-        eventName: "",
-        eventDate: "",
-        imageUrl: "",
-        eventId: 0
-      };
-      this.setState({ events });
-      if (this.state.whatEventAreYouEditing !== null) {
-        this.handleToggle("event");
-      }
-      this.setState(prevState => ({
-        areYouAddingAnEvent: !prevState.areYouAddingAnEvent
-      }));
-    } else {
-      const whatEventAreYouEditing = null;
-      const oldImageUrl = undefined;
-      this.setState({ whatEventAreYouEditing });
-      this.setState({ oldImageUrl });
-    }
-  };
-
   render() {
     document.body.style.backgroundColor = "#fff6f3";
 
@@ -314,11 +159,9 @@ class App extends Component {
     return (
       <React.Fragment>
         <NavBar
-          onDelete={this.handleDelete}
           onDisplay={this.handleDisplay}
-          onReadCookie={this.handleSheetRead}
+          onLoad={this.handleSheetRead}
           onSort={this.handleSort}
-          onWriteCookie={this.handleWriteCookie}
           sortDirection={this.state.sortDirection}
           time={this.state.time}
           whatEvetsToDisplay={this.state.whatEvetsToDisplay}
@@ -332,21 +175,8 @@ class App extends Component {
           </div>
 
           <TimerList
-            areYouAddingAnEvent={this.state.areYouAddingAnEvent}
             events={this.displayedEvents(this.state.events)}
-            favouriteEvent={this.state.favouriteEvent}
             time={this.state.time}
-            oldImageUrl={this.state.oldImageUrl}
-            onDelete={this.handleDelete}
-            onEdit={this.handleEdit}
-            onEventDate={this.handleEventDate}
-            onEventName={this.handleEventName}
-            onFavourite={this.handleOnFavourite}
-            onFormSubmit={this.handleFormSubmit}
-            onImageUrl={this.handleImageUrl}
-            onRandomImage={this.handleRandomImage}
-            onToggle={this.handleToggle}
-            whatEventAreYouEditing={this.state.whatEventAreYouEditing}
           />
         </main>
         <Footer />

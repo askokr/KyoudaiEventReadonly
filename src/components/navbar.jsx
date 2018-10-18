@@ -7,14 +7,12 @@ import ElementsToDisplayButtonGroup from "./NavBarElements/elementsToDisplayButt
 
 const NavBar = ({
   onDisplay,
-  onReadCookie,
+  onLoad,
   onSort,
-  onWriteCookie,
   sortDirection,
   time,
   whatEvetsToDisplay
 }) => {
-  let isThereACookie = document.cookie !== "" ? true : false;
   return (
     <React.Fragment>
       <MediaQuery minDeviceWidth={1224}>
@@ -22,11 +20,7 @@ const NavBar = ({
           <div className="row">
             {/* <h1 className="text-white m-4">Events</h1> */}
 
-            <SaveLoadButtonGruop
-              onReadCookie={onReadCookie}
-              onWriteCookie={onWriteCookie}
-              isThereACookie={isThereACookie}
-            />
+            <SaveLoadButtonGruop onLoad={onLoad} />
 
             <SortOrderButtonGroup
               onSort={onSort}
@@ -46,11 +40,7 @@ const NavBar = ({
           <div className="row">
             {/* <h1 className="text-white m-4">Events</h1> */}
 
-            <SaveLoadButtonGruop
-              onReadCookie={onReadCookie}
-              onWriteCookie={onWriteCookie}
-              isThereACookie={isThereACookie}
-            />
+            <SaveLoadButtonGruop onLoad={onLoad} />
 
             <SortOrderButtonGroup
               onSort={onSort}
