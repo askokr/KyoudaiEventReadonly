@@ -1,3 +1,5 @@
+import Months from "./months";
+
 function addZero(i) {
   if (i < 10) {
     i = "0" + i;
@@ -6,20 +8,7 @@ function addZero(i) {
 }
 function datetimeStringFunction(eventDate) {
   const rawDate = new Date(eventDate);
-  const months = [
-    "jaanuar",
-    "veebruar",
-    "märts",
-    "aprill",
-    "mai",
-    "juuni",
-    "juuli",
-    "august",
-    "september",
-    "oktoober",
-    "november",
-    "detember"
-  ];
+  const months = Months;
   const days = [
     "Pühapäev",
     "Esmaspäev",

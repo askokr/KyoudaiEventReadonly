@@ -21,7 +21,6 @@ class App extends Component {
     ]
   };
 
-  //the place to create a state, make ajax calls etc
   componentDidMount() {
     setInterval(this.update, 1000);
     this.handleSheetRead();
@@ -98,9 +97,7 @@ class App extends Component {
 
     for (let i = 0; i < nrOfEvents; i++) {
       let eventId = api_response[i].eventId;
-      console.log(eventId);
       let eventName = api_response[i].eventName;
-      console.log(eventName);
       let eventDate = api_response[i].eventDate;
       let imageUrl = api_response[i].imageUrl;
       let event = {
