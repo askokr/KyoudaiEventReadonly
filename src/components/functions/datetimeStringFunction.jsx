@@ -8,7 +8,6 @@ function addZero(i) {
 }
 function datetimeStringFunction(eventDate) {
   const rawDate = new Date(eventDate);
-  const months = Months;
   const days = [
     "Pühapäev",
     "Esmaspäev",
@@ -24,7 +23,7 @@ function datetimeStringFunction(eventDate) {
     ", " +
     rawDate.getDate() +
     ". " +
-    months[rawDate.getMonth()] +
+    Months[rawDate.getMonth()] +
     " " +
     rawDate.getFullYear() +
     " " +

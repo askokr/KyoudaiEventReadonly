@@ -1,4 +1,5 @@
 import React from "react";
+import Months from "../functions/months";
 
 const Clock = ({ time }) => {
   const y = time.getFullYear();
@@ -7,24 +8,11 @@ const Clock = ({ time }) => {
   const h = time.getHours();
   const m = time.getMinutes();
   const s = time.getSeconds();
-  const months = [
-    "jaanuar",
-    "veebruar",
-    "märts",
-    "aprill",
-    "mai",
-    "juuni",
-    "juuli",
-    "august",
-    "september",
-    "oktoober",
-    "november",
-    "detember"
-  ];
+
   return (
     <h2 className="text-white">
       {d + ". "}
-      {months[M] + " "}
+      {Months[M] + " "}
       {y + " "}
       {h % 24}:{m < 10 ? "0" + m : m}:{s < 10 ? "0" + s : s}
     </h2>
