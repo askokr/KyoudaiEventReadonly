@@ -11,14 +11,7 @@ class App extends Component {
     sortDirection: "byKey",
     time: new Date(),
     whatEvetsToDisplay: "all",
-    events: [
-      {
-        eventId: 0,
-        eventName: "",
-        eventDate: "",
-        imageUrl: ""
-      }
-    ]
+    events: [{}]
   };
 
   componentDidMount() {
@@ -90,7 +83,7 @@ class App extends Component {
     );
     const api_response = await api_call.json();
 
-    let events = [...this.state.events];
+    let events = [{}];
 
     const experiment = api_response;
     const nrOfEvents = experiment.length;
