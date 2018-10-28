@@ -83,8 +83,14 @@ class App extends Component {
     const COMMAND = "?includeGridData=true&";
     const API_KEY = "AIzaSyCUmw_0VD7EYk2JBh8oeOmN3fRtR2nb1lU";
 
+    //GET
+
+    // const api_call = await fetch(
+    //   `${API_ROUTE}${FILE_ID}${COMMAND}key=${API_KEY}`
+    // );
+
     const api_call = await fetch(
-      `${API_ROUTE}${FILE_ID}${COMMAND}key=${API_KEY}`
+      `$https://sheets.googleapis.com/v4/spreadsheets/${FILE_ID}/values/Sheet1!A1:D5`
     );
     const apiCallContents = await api_call.json();
     console.log(apiCallContents);
