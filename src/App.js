@@ -90,7 +90,7 @@ class App extends Component {
     // );
 
     const api_call = await fetch(
-      `$https://sheets.googleapis.com/v4/spreadsheets/${FILE_ID}/values/Sheet1!A1:D5`
+      `$https://sheets.googleapis.com/v4/spreadsheets/${FILE_ID}/values/Sheet1!A1:D5&key=${API_KEY}`
     );
     const apiCallContents = await api_call.json();
     console.log(apiCallContents);
