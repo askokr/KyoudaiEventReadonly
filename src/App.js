@@ -78,30 +78,40 @@ class App extends Component {
   };
 
   handleSheetRead = async () => {
+    const API_ROUTE = "https://sheets.googleapis.com/v4/spreadsheets/";
+    const FILE_ID = "1Np5G3EEvkKWRxlBu17DGiDj0hY53sMbI7BKqO246irs";
+    const COMMAND = "?includeGridData=true&";
+    const API_KEY = "AIzaSyCUmw_0VD7EYk2JBh8oeOmN3fRtR2nb1lU";
+
     const api_call = await fetch(
-      "https://sheetsu.com/apis/v1.0qu/6d94d7456f46"
+      `${API_ROUTE}${FILE_ID}${COMMAND}key=${API_KEY}`
     );
-    const api_response = await api_call.json();
+    const apiCallContents = await api_call.json();
+    console.log(apiCallContents);
+    // const api_call = await fetch(
+    //   "https://sheetsu.com/apis/v1.0qu/6d94d7456f46"
+    // );
+    // const api_response = await api_call.json();
 
-    let events = [{}];
+    // let events = [{}];
 
-    const experiment = api_response;
-    const nrOfEvents = experiment.length;
+    // const experiment = api_response;
+    // const nrOfEvents = experiment.length;
 
-    for (let i = 0; i < nrOfEvents; i++) {
-      let eventId = api_response[i].eventId;
-      let eventName = api_response[i].eventName;
-      let eventDate = api_response[i].eventDate;
-      let imageUrl = api_response[i].imageUrl;
-      let event = {
-        eventId: eventId,
-        eventName: eventName,
-        eventDate: eventDate,
-        imageUrl: imageUrl
-      };
-      events.push(event);
-    }
-    this.setState({ events });
+    // for (let i = 0; i < nrOfEvents; i++) {
+    //   let eventId = api_response[i].eventId;
+    //   let eventName = api_response[i].eventName;
+    //   let eventDate = api_response[i].eventDate;
+    //   let imageUrl = api_response[i].imageUrl;
+    //   let event = {
+    //     eventId: eventId,
+    //     eventName: eventName,
+    //     eventDate: eventDate,
+    //     imageUrl: imageUrl
+    //   };
+    //   events.push(event);
+    // }
+    // this.setState({ events });
   };
 
   handleSort = type => {
