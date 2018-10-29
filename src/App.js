@@ -80,7 +80,7 @@ class App extends Component {
   handleSheetRead = async () => {
     const API_ROUTE = "https://sheets.googleapis.com/v4/spreadsheets/";
     const SPREADSHEET_ID = "1Np5G3EEvkKWRxlBu17DGiDj0hY53sMbI7BKqO246irs";
-    const COMMAND = "/values/A2%3AD11?";
+    const COMMAND = "/values/A2%3AC21?";
     const API_KEY = "AIzaSyCUmw_0VD7EYk2JBh8oeOmN3fRtR2nb1lU";
     const API_CALL = `${API_ROUTE}${SPREADSHEET_ID}${COMMAND}key=${API_KEY}`;
 
