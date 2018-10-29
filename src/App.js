@@ -25,6 +25,7 @@ class App extends Component {
     });
     this.rememberSortorder();
   };
+
   //Sort images to be displayed
   displayedEvents = () => {
     let usnortedEvents = [...this.state.events];
@@ -150,6 +151,8 @@ class App extends Component {
 
   render() {
     document.body.style.backgroundColor = "#fff6f3";
+
+    // console.log("main component update");
 
     const message = ["Sündmused", "Eelseisvad ja möödunud sündmused"];
     return (

@@ -49,17 +49,6 @@
   left: 5%;
 }
 
-.text-container-button {
-  position: relative;
-  opacity: 0;
-}
-.text-container-button button {
-  margin: 2px;
-}
-.text-container:hover .text-container-button {
-  opacity: 1;
-}
-
 .zoom {
   -moz-transition: all 0.5s;
   -webkit-transition: all 0.5s;
@@ -85,39 +74,6 @@
 .zoom:hover h4 {
   background: none;
   font-weight: bold;
-}
-
-.editor-container {
-  overflow: auto;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  position: relative;
-  box-shadow: 5px 5px 5px 5px #888888;
-}
-.editor-background {
-  overflow: auto;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  position: relative;
-}
-
-.editor-container h2 {
-  background: linear-gradient(
-    to right,
-    rgba(229, 221, 218, 0) 0%,
-    rgba(229, 221, 218, 0.6) 10%,
-    rgba(229, 221, 218, 0.6) 90%,
-    rgba(229, 221, 218, 0) 100%
-  );
-  margin: 10px 10px 10px 10px;
-  position: relative;
-  left: 5%;
 }
 
 .passedEvent {
@@ -167,8 +123,3 @@
   font-style: oblique;
   font-weight: 500;
 }
-/* 
-.btn-outline-primary:hover {
-  background-color: #0069d9 !important;
-  border-color: #0062cc !important;
-} */
