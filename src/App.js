@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import MediaQuery from "react-responsive";
 import TimerList from "./components/timerlist";
 import NavBar from "./components/navbar";
 import Footer from "./components/footer";
@@ -7,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 class App extends Component {
   state = {
+    resort: false,
     favouriteEvent: null,
     sortDirection: "byKey",
     time: new Date(),
@@ -168,7 +170,12 @@ class App extends Component {
         <main>
           <div className="jumbotron jumbotron-fluid">
             <div className="container">
-              <h1 className="display-1">{message[0]}</h1>
+              <MediaQuery minDeviceWidth={1224}>
+                <h1 className="display-1">{message[0]}</h1>
+              </MediaQuery>
+              <MediaQuery maxDeviceWidth={1224}>
+                <h1 className="display-4">{message[0]}</h1>
+              </MediaQuery>
               <p className="lead">{message[1]}</p>
             </div>
           </div>

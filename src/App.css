@@ -3,6 +3,13 @@
   word-wrap: break-word;
 }
 
+.timer-container-mob {
+  display: block;
+  word-wrap: break-word;
+  height: 465px;
+  padding-left: 0px !important;
+}
+
 .background-image {
   height: 255px;
   overflow: auto;
@@ -29,10 +36,27 @@
   cursor: pointer;
 }
 
+.text-container-mob {
+  height: 450px;
+  overflow: auto;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  position: relative;
+  top: -450px;
+  margin-bottom: -450px;
+  cursor: pointer;
+}
+.text-container-mob h4,
 .text-container h4 {
   font-style: oblique;
 }
 
+.text-container-mob h2,
+.text-container-mob h3,
+.text-container-mob h4,
 .text-container h2,
 .text-container h3,
 .text-container h4 {

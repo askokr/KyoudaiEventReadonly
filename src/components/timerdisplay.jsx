@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import MediaQuery from "react-responsive";
 import TextBox from "./TimerDisplayElements/textBox";
 import "../App.css";
 
@@ -8,28 +9,54 @@ class TimerDisplay extends Component {
     const { event, time } = props;
     const { eventName, eventDate, imageUrl } = event;
     const backgroundImage = {
-      backgroundImage: `url(${imageUrl})`
+      backgroundImage: `url(${imageUrl})`,
+      height: "450px"
     };
     return (
-      <div className="container timer-container text-center m-4 zoom">
-        <div style={backgroundImage} className="background-image" />
-        <div
-          className={
-            "text-container" +
-            (new Date(time) > new Date(eventDate) ? " passedEvent" : "")
-          }
-        >
-          <div className="d-flex justify-content-center">
-            <div className="p-2 justify-content-center">
-              <TextBox
-                eventName={eventName}
-                eventDate={eventDate}
-                timerFunctionInput={props}
-              />
+      <React.Fragment>
+        <MediaQuery minDeviceWidth={1224}>
+          <div className="container timer-container text-center m-4 zoom">
+            <div style={backgroundImage} className="background-image" />
+            <div
+              className={
+                "text-container" +
+                (new Date(time) > new Date(eventDate) ? " passedEvent" : "")
+              }
+            >
+              <div className="d-flex justify-content-center">
+                <div className="p-2 justify-content-center">
+                  <TextBox
+                    eventName={eventName}
+                    eventDate={eventDate}
+                    timerFunctionInput={props}
+                  />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </MediaQuery>
+        <MediaQuery maxDeviceWidth={1224}>
+          <div className="container timer-container-mob text-center m-4 zoom">
+            <div style={backgroundImage} className="background-image" />
+            <div
+              className={
+                "text-container-mob" +
+                (new Date(time) > new Date(eventDate) ? " passedEvent" : "")
+              }
+            >
+              <div className="d-flex justify-content-center">
+                <div className="p-2 justify-content-center">
+                  <TextBox
+                    eventName={eventName}
+                    eventDate={eventDate}
+                    timerFunctionInput={props}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </MediaQuery>
+      </React.Fragment>
     );
   }
 }
