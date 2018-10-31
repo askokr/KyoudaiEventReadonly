@@ -161,7 +161,7 @@ class App extends Component {
               <MediaQuery maxDeviceWidth={1224}>
                 <h1 className="display-4">{message[0]}</h1>
               </MediaQuery>
-              <p className="lead">{message[1]}</p>
+              <p className="lead lead-mob">{message[1]}</p>
             </div>
           </div>
 

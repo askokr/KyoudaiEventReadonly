@@ -1,3 +1,15 @@
+.display-1,
+.display-4,
+.lead {
+  font-family: "Courgette", cursive;
+}
+.lead {
+  padding-left: 100px;
+}
+.lead-mob {
+  padding-left: 15px;
+}
+
 .timer-container {
   display: block;
   word-wrap: break-word;
@@ -8,6 +20,7 @@
   word-wrap: break-word;
   height: 465px;
   padding-left: 0px !important;
+  width: 100%;
 }
 
 .background-image {
@@ -48,6 +61,8 @@
   top: -450px;
   margin-bottom: -450px;
   cursor: pointer;
+  overflow: hidden;
+  align-content: center;
 }
 .text-container-mob h4,
 .text-container h4 {

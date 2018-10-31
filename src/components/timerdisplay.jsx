@@ -9,12 +9,15 @@ class TimerDisplay extends Component {
     const { event, time } = props;
     const { eventName, eventDate, imageUrl } = event;
     const backgroundImage = {
+      backgroundImage: `url(${imageUrl})`
+    };
+    const backgroundImageMob = {
       backgroundImage: `url(${imageUrl})`,
       height: "450px"
     };
     return (
       <React.Fragment>
-        <MediaQuery maxDeviceWidth={800}>
+        <MediaQuery minDeviceWidth={800}>
           <div className="container timer-container text-center m-4 zoom">
             <div style={backgroundImage} className="background-image" />
             <div
@@ -35,9 +38,9 @@ class TimerDisplay extends Component {
             </div>
           </div>
         </MediaQuery>
-        <MediaQuery minDeviceWidth={800}>
+        <MediaQuery maxDeviceWidth={800}>
           <div className="container timer-container-mob text-center m-4 zoom">
-            <div style={backgroundImage} className="background-image" />
+            <div style={backgroundImageMob} className="background-image" />
             <div
               className={
                 "text-container-mob" +
