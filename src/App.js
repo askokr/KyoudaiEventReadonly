@@ -81,23 +81,22 @@ class App extends Component {
   };
 
   handleSheetRead = async () => {
-    handleSheetRead = async () => {
-      const API_ROUTE = "https://sheets.googleapis.com/v4/spreadsheets/";
-      const FILE_ID = "1Np5G3EEvkKWRxlBu17DGiDj0hY53sMbI7BKqO246irs";
-      const REQUEST = "/values/C2?";
-      const API_KEY = "AIzaSyCUmw_0VD7EYk2JBh8oeOmN3fRtR2nb1lU";
-      const API_CALL_ROUTE = `${API_ROUTE}${FILE_ID}${REQUEST}key=${API_KEY}`;
-  
-      const api_call = await fetch(API_CALL_ROUTE);
-  
-      const apiCallContents = await api_call.json();
-      const values = apiCallContents.values[0];
-      const eventsString = values[0];
-      let events = JSON.parse(eventsString);
-      const dafaultEvent = this.state.events[0];
-      events.unshift(dafaultEvent);
-      this.setState({ events });
-    };
+    const API_ROUTE = "https://sheets.googleapis.com/v4/spreadsheets/";
+    const FILE_ID = "1Np5G3EEvkKWRxlBu17DGiDj0hY53sMbI7BKqO246irs";
+    const REQUEST = "/values/C2?";
+    const API_KEY = "AIzaSyCUmw_0VD7EYk2JBh8oeOmN3fRtR2nb1lU";
+    const API_CALL_ROUTE = `${API_ROUTE}${FILE_ID}${REQUEST}key=${API_KEY}`;
+
+    const api_call = await fetch(API_CALL_ROUTE);
+
+    const apiCallContents = await api_call.json();
+    const values = apiCallContents.values[0];
+    const eventsString = values[0];
+    let events = JSON.parse(eventsString);
+    const dafaultEvent = this.state.events[0];
+    events.unshift(dafaultEvent);
+    this.setState({ events });
+  };
 
   handleSort = type => {
     let usnortedEvents = [...this.state.events];
