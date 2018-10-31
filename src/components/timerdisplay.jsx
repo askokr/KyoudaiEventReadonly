@@ -14,7 +14,7 @@ class TimerDisplay extends Component {
     };
     return (
       <React.Fragment>
-        <MediaQuery minDeviceWidth={800}>
+        <MediaQuery maxDeviceWidth={800}>
           <div className="container timer-container text-center m-4 zoom">
             <div style={backgroundImage} className="background-image" />
             <div
@@ -35,7 +35,7 @@ class TimerDisplay extends Component {
             </div>
           </div>
         </MediaQuery>
-        <MediaQuery maxDeviceWidth={800}>
+        <MediaQuery minDeviceWidth={800}>
           <div className="container timer-container-mob text-center m-4 zoom">
             <div style={backgroundImage} className="background-image" />
             <div
