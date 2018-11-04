@@ -10,6 +10,10 @@
   padding-left: 15px;
 }
 
+main {
+  width: 100vw;
+}
+
 .timer-container {
   display: block;
   word-wrap: break-word;
@@ -21,6 +25,9 @@
   height: 465px;
   padding-left: 0px !important;
   width: 100%;
+  position: relative;
+  right: 10px;
+  width: 95% !important;
 }
 
 .background-image {
